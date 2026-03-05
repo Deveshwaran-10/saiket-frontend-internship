@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .site-header {
+            background: #1a1a2e;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #e94560;
+        }
+
+        nav a {
+            color: #a0aec0;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            font-family: 'Segoe UI', sans-serif;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Article */
+        article {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 3rem 3rem 0;
+            text-align: center;
+        }
+
+        .category {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            color: #1a202c;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            color: #718096;
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta i {
+            color: #e94560;
+        }
+
+        /* Featured Image */
+        .featured-image {
+            width: 100%;
+            height: 450px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        article:hover .featured-image img {
+            transform: scale(1.03);
+        }
+
+        /* Article Content */
+        .article-content {
+            padding: 0 3rem 3rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+
+        .article-content h2 {
+            font-size: 1.75rem;
+            color: #1a202c;
+            margin: 2.5rem 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #e94560;
+            display: inline-block;
+        }
+
+        .article-content ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: #4a5568;
+            padding: 0.5rem 0;
+        }
+
+        .article-content li::marker {
+            color: #e94560;
+            font-size: 1.2rem;
+        }
+
+        /* Quote */
+        blockquote {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border-left: 4px solid #9f7aea;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: #553c9a;
+        }
+
+        blockquote p {
+            margin-bottom: 0 !important;
+            font-size: 1.15rem !important;
+        }
+
+        /* Read More Button */
+        .read-more-container {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 1rem;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #e94560 0%, #d63b50 100%);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            font-family: 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(233, 69, 96, 0.4);
+        }
+
+        .read-more:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(233, 69, 96, 0.5);
+        }
+
+        .read-more i {
+            transition: transform 0.3s;
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #1a1a2e;
+            color: #a0aec0;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content p {
+            font-size: 0.95rem;
+        }
+
+        .footer-content a {
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-header,
+            .article-content {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .featured-image {
+                height: 280px;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav a {
+                margin: 0 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Article -->
+        <article>
+            <!-- Article Header -->
+            <header class="article-header">
+                <span class="category">Web Development</span>
+                <h1 class="article-title">The Future of Web Development</h1>
+                <div class="article-meta">
+                    <span><i class="fas fa-user"></i> Devesh Waran</span>
+                    <span><i class="fas fa-calendar"></i> March 2026</span>
+                    <span><i class="fas fa-clock"></i> 8 min read</span>
+                </div>
+            </header>
+
+            <!-- Featured Image -->
+            <div class="featured-image">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200" alt="Web Development">
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content">
+                <!-- Introduction Section -->
+                <section>
+                    <h2>Introduction</h2>
+                    <p>
+                        Web development continues to evolve rapidly with the introduction of new technologies, 
+                        frameworks, and development methodologies. From responsive design to progressive web 
+                        applications, developers are constantly adapting to build faster, smarter, and more 
+                        interactive web experiences.
+                    </p>
+                    <p>
+                        The landscape of web development has transformed dramatically over the past decade. 
+                        What started as simple HTML pages has evolved into complex, full-fledged applications 
+                        that rival native software in functionality and user experience.
+                    </p>
+                </section>
+
+                <!-- Main Content with List -->
+                <section>
+                    <h2>Key Trends in Modern Web Development</h2>
+                    <p>Some of the most important trends shaping the future of web development include:</p>
+                    <ul>
+                        <li><strong>Responsive and Mobile-First Design</strong> — Creating websites that adapt seamlessly to any device screen size</li>
+                        <li><strong>JavaScript Frameworks</strong> — Modern libraries like React, Vue, and Angular for building dynamic user interfaces</li>
+                        <li><strong>Serverless Architecture</strong> — Cloud-based computing that eliminates server management complexity</li>
+                        <li><strong>Artificial Intelligence Integration</strong> — Smart features like chatbots, personalization, and automation</li>
+                        <li><strong>Performance Optimization</strong> — Faster load times and better SEO through advanced caching and CDNs</li>
+                        <li><strong>WebAssembly</strong> — High-performance code execution directly in the browser</li>
+                    </ul>
+                    
+                    <blockquote>
+                        <p>"The best websites aren't built—they're crafted with precision, creativity, and a deep understanding of user needs."</p>
+                    </blockquote>
+
+                    <p>
+                        These technologies help developers create scalable, efficient, and engaging digital 
+                        products used by millions of users worldwide. Companies are investing heavily in 
+                        web technologies to deliver seamless digital experiences that drive business growth.
+                    </p>
+                </section>
+
+                <!-- Conclusion Section -->
+                <section>
+                    <h2>Conclusion</h2>
+                    <p>
+                        As technology continues to advance, web developers must constantly learn and adapt to 
+                        stay ahead. Understanding modern frameworks, performance optimization, and user 
+                        experience design will play a key role in shaping the future of digital platforms.
+                    </p>
+                    <p>
+                        The journey of web development is one of continuous learning and innovation. 
+                        Embracing new tools, staying updated with industry trends, and focusing on 
+                        user-centric design will ensure that developers remain valuable in this 
+                        ever-evolving field.
+                    </p>
+                </section>
+
+                <!-- Read More Link -->
+                <div class="read-more-container">
+                    <a href="#" class="read-more">
+                        Read Full Article
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+</body>
+</html>
+
